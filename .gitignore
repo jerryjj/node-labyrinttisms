@@ -1,0 +1,4 @@
+*.tmproj
+*.js
+lib/*.js
+tests/*.js
