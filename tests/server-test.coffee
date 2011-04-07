@@ -17,15 +17,15 @@ Copyright 2011-2012 Jerry Jalava
 vows = require 'vows'
 assert = require 'assert'
 
-laryrinttisms = require '../main'
+labyrinttisms = require '../main'
 
 request = require 'request'
 querystring = require 'querystring'
 server = require './server'
 
-Config = laryrinttisms.Config
-Server = laryrinttisms.Server
-messages = laryrinttisms.messages
+Config = labyrinttisms.Config
+Server = labyrinttisms.Server
+messages = labyrinttisms.messages
 
 TEST_USER = "test"
 TEST_PASSWORD = "password"

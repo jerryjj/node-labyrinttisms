@@ -17,9 +17,9 @@ Copyright 2011-2012 Jerry Jalava
 vows = require 'vows'
 assert = require 'assert'
 
-laryrinttisms = require '../main'
+labyrinttisms = require '../main'
 
-messages = laryrinttisms.messages
+messages = labyrinttisms.messages
 
 SMS = messages.SMS
 

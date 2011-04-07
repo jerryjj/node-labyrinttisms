@@ -17,11 +17,11 @@ Copyright 2011-2012 Jerry Jalava
 vows = require 'vows'
 assert = require 'assert'
 
-laryrinttisms = require '../main'
+labyrinttisms = require '../main'
 
-Config = laryrinttisms.Config
-Client = laryrinttisms.Client
-messages = laryrinttisms.messages
+Config = labyrinttisms.Config
+Client = labyrinttisms.Client
+messages = labyrinttisms.messages
 
 TEST_USER = "test"
 TEST_PASSWORD = "password"
