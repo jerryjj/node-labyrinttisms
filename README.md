@@ -7,11 +7,13 @@ WARNING: Under development, simple SMS sending and receiving works
 For use with Finnish Labyrintti Media's SMS Gateway.
 Written with CoffeeScript
 
-Usage (examples in CoffeeScript)
-================================
+Usage
+=====
+
+Examples in CoffeeScript
 
 Client
-================================
+======
 
     labyrinttisms = require 'labyrinttisms'
 
