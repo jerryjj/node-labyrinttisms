@@ -7,6 +7,14 @@ WARNING: Under development, simple SMS sending and receiving works
 For use with Finnish Labyrintti Media's SMS Gateway.
 Written with CoffeeScript
 
+Installation
+============
+
+    git clone git://github.com/jerryjj/node-labyrinttisms.git
+    cd node-labyrinttisms
+    ./compile_all.sh
+    sudo npm link
+
 Usage
 =====
 
