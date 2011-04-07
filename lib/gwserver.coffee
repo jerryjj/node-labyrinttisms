@@ -61,8 +61,7 @@ class Server
         msg.setText body.text
       if body.binary
         msg.setBinary body.binary
-      console.log "got message:"
-      console.log msg
+      
       cb msg
       Server.finalResponse(res)
         
