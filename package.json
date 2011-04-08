@@ -10,5 +10,6 @@
   "keywords": ["library", "sms", "labyrintti"],
   "repository": "git://github.com/jerryjj/node-labyrinttisms",
   "main": "main",
-  "engines": { "node": ">= 0.4.1 < 0.5.0" }
+  "engines": { "node": ">= 0.4.1 < 0.5.0" },
+  "scripts": { "test": "./run_tests.sh" }
 }
