@@ -1,2 +1,3 @@
 #!/bin/sh
-vows tests/*.coffee --spec
+coffee -bc tests/*.coffee
+vows tests/*-test.coffee --spec
