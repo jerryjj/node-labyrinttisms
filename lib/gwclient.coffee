@@ -14,8 +14,8 @@ Copyright 2011-2012 Jerry Jalava
     limitations under the License.
 ###
 
+http = require 'http'
 querystring = require 'querystring'
-request = require 'request'
 CoffeeScript = require 'coffee-script'
 
 messages = require 'gwmessages'
@@ -42,21 +42,47 @@ class Client
     
     #callback 200, "+358123456789 OK 1 message accepted for sending"
     
-    request
-      uri: url
-      , method: 'POST'
-      , body: @_generatePostData(message)
-      , headers:
+    options = 
+      host: @getServiceHost()
+      port: @config.options.port
+      path: @getServicePath()
+      method: 'POST'
+      headers:
         'content-type': 'application/x-www-form-urlencoded'
-      , (error, response, body) ->
-        if !error && response.statusCode == 200
-            callback response.statusCode, body
-        else
-          if @error_cb
-            @error_cb error
+
+    req = http.request options, (res) ->
+      res.setEncoding 'utf8'
+      body = ''
+      res.on 'data', (chunk) ->
+        body += chunk
+      req.on 'end', () ->
+        if res.statusCode == 200
+          callback res.statusCode, querystring.parse body
+        else if @error_cb
+          @error_cb querystring.parse body
+    
+    req.clientError (err) ->
+      if @error_cb
+        @error_cb err
+    
+    req.write @_generatePostData(message) + "\n"
+    req.end()
     
     return
   
+  getServiceHost: () ->
+    url = "http://"
+    if @config.options.secure
+      url = "https://"
+    url += @config.options.host
+    return url
+
+  getServicePath: (type="sms") ->
+    if type is "sms"
+      Client.smsuri
+    else if type is "mms"
+      Client.mmsuri
+
   getServiceUrl: (type="sms") ->
     url = "http://"
     if @config.options.secure
