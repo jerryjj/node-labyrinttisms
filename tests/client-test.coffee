@@ -31,19 +31,6 @@ test_config = new Config
   user: TEST_USER
   password: TEST_PASSWORD
 
-# client = new Client
-#   user: "user"
-#   password: "password"
-#   , (err) ->
-#     console.log "Error occurred while sending message"
-#     console.log err
-# 
-# msg = new messages.SMS "+358456365097", "Hello, world!"
-# 
-# client.send msg, (resp) ->
-#   console.log "message sent"
-#   console.log resp
-
 # Client tests
 vows.describe('SMS Client').addBatch
   'creating without arguments':
@@ -90,21 +77,24 @@ vows.describe('SMS Client').addBatch
         assert.isString uri
       'matches': (topic) ->
         assert.equal topic.getServiceUrl(), "http://gw.labyrintti.com:28080/sendsms"
-  'Send normal SMS':
-    topic: () ->
-      c = new Client test_config, (err) ->
-        console.log "Error sending message"
-        console.log err
-      msg = new messages.SMS TEST_RECEIVER, "Hello, World! from node-labyrinttisms"
-      c.send(msg, this.callback)
-      return
-    'status is int': (status, _) ->
-      assert.isNotNull status
-      assert.isNumber status
-    'response is string': (_, response) ->
-      assert.isNotNull response
-      assert.isString response
-      assert.equal response.trim(), TEST_RECEIVER + " OK 1 message accepted for sending"
+#Enable following test only if you have correct username and password for service
+  # 'Send normal SMS':
+  #   topic: () ->
+  #     _s = this
+  #     c = new Client test_config, (err) ->
+  #       console.log "Error sending message"
+  #       console.log err
+  #       _s.callback(0, null)
+  #     msg = new messages.SMS TEST_RECEIVER, "Hello, World! from node-labyrinttisms"
+  #     c.send(msg, this.callback)
+  #     return
+  #   'status is int': (status, _) ->
+  #     assert.isNotNull status
+  #     assert.isNumber status
+  #   'response is string': (_, response) ->
+  #     assert.isNotNull response
+  #     assert.isString response
+  #     assert.equal response.trim(), TEST_RECEIVER + " OK 1 message accepted for sending"
       
 .export module, error: false
 
