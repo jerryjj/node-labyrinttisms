@@ -50,7 +50,7 @@ class Server
     
     @_parseResponse req, (body) ->
       msg = new messages.SMS
-      msg.setSender body.source      
+      msg.setSender body.source || body.from_number      
       msg.addRecipient body.dest      
       msg.operator = body.operator
       msg.keywords = body.keyword
