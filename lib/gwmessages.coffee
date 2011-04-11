@@ -105,9 +105,25 @@ class Message
     #TODO: Validation of datetime
     if datetime
       @validityPeriod = datetime
-      
+  
+  getContent: () ->
+    if @binary
+      return @binary
+    return @text
+  
   getPostDataParts: () ->
     return {}
+    
+  toObject: () ->
+    return {
+      id: @id
+      recipients: @recipients
+      sender: @sender
+      operator: @operator
+      keywords: @keywords
+      parameters: @parameters
+      content: @getContent()      
+    }
   
   _clearValues: () ->    
     @id = null
@@ -259,6 +275,16 @@ class DeliveryReport
       when 10 then "Operator"
       when 11 then "Protocol"
       when 12 then "Canceled"
+  
+  toObject: () ->
+    return {
+      id: @message_id
+      recipient: @recipient
+      original_recipient: @original_recipient
+      state: @state
+      error: @error
+      description: @description
+    }
 
 class MessageUtils
 
